@@ -1,7 +1,7 @@
 import TextButtonParams = require("./TextButtonParams");
 
 interface ImageTextButtonParams extends TextButtonParams {
-	src: g.Surface | g.Asset;
+	src: g.Surface | g.ImageAsset;
 	srcWidth?: number;
 	srcHeight?: number;
 }
