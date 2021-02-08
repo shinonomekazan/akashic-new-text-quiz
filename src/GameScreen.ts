@@ -64,21 +64,18 @@ class GameScreen extends g.E {
 				const inputTextEvent = ev as events.InputTextEvent;
 				if (playerID === g.game.selfId) {
 					if (this.currentTurn === turn.question && gameCore.myPlayer.isMaster()) {
-						console.log("xxx");
 						if (this.question === "") {
 							g.game.raiseEvent(new g.MessageEvent({
 								message: "Question",
 								text: inputTextEvent.data.text
 							}));
-						}
-						else if (this.answer === "") {
+						} else if (this.answer === "") {
 							g.game.raiseEvent(new g.MessageEvent({
 								message: "Answer",
 								text: inputTextEvent.data.text
 							}));
 						}
-					}
-					else if (this.currentTurn === turn.answer && !gameCore.myPlayer.isMaster()) {
+					} else if (this.currentTurn === turn.answer && !gameCore.myPlayer.isMaster()) {
 						if ( this.myAnswer === "") {
 							g.game.raiseEvent(new g.MessageEvent({
 								message: "MyAnswer",
@@ -87,10 +84,8 @@ class GameScreen extends g.E {
 						}
 					}
 				}
-			}
-			else {
+			} else {
 				if (ev.data.message === "Question" && this.currentTurn === turn.question && this.question === "") {
-					console.log("yyy");
 					this.setQuestion(ev.data.text);
 				}
 
@@ -98,10 +93,10 @@ class GameScreen extends g.E {
 					this.setAnswer(ev.data.text);
 				}
 
-				if (ev.data.message === "MyAnswer" && ev.player.id === g.game.selfId 
+				if (ev.data.message === "MyAnswer" && ev.player.id === g.game.selfId
 					&& this.currentTurn === turn.answer && this.myAnswer === "") {
 					this.setMyAnswer(ev.data.text);
-	
+
 					if (this.isWin()) {
 						this.onWin();
 						g.game.raiseEvent(new g.MessageEvent({ message: "Clear", age: g.game.age }));
@@ -115,14 +110,14 @@ class GameScreen extends g.E {
 			//
 			if (ev.data.message === "Failed") {
 				if (ev.player.id !== g.game.selfId && g.game.age - ev.data.age < g.game.fps * 3) {
-				    //this.showPopup((ev.player.name != null ? ev.player.name : "Player " + ev.player.id) + " Failed !");
+				    // this.showPopup((ev.player.name != null ? ev.player.name : "Player " + ev.player.id) + " Failed !");
 					this.setBottomLeftLabel((ev.player.name != null ? ev.player.name : "Player " + ev.player.id) + " Failed !");
 				}
 			}
 
 			if (ev.data.message === "Clear") {
 				if (ev.player.id !== g.game.selfId && g.game.age - ev.data.age < g.game.fps * 3) {
-				    //this.showPopup((ev.player.name != null ? ev.player.name : "Player " + ev.player.id) + " Clear !");
+				    // this.showPopup((ev.player.name != null ? ev.player.name : "Player " + ev.player.id) + " Clear !");
 					this.setBottomLeftLabel((ev.player.name != null ? ev.player.name : "Player " + ev.player.id) + " Clear !");
 				}
 			}
@@ -400,7 +395,7 @@ class GameScreen extends g.E {
 			console.log("input1");
 			g.game.raiseEvent(new g.MessageEvent({
 				type: "text",
-				text: "input1 input1 input1 input1 input1 input1 input1 input1 input1 input1 input1 input1 input1 input1 input1 input1 input1 input1 input1 input1 input1 input1 input1 input1 input1 input1 "
+				text: "input1 input1 input1 input1 input1 input1 input1 input1 input1 input1 input1 input1 input1 input1 input1"
 			}, ev.player));
 		});
 
@@ -477,8 +472,7 @@ class GameScreen extends g.E {
 			this.contentLayout.append(this.stopButton);
 			this.contentLayout.append(this.nextButton);
 			this.contentLayout.append(this.finishButton);
-		}
-		else {
+		} else {
 			this.contentLayout.append(this.myAnswerLabel);
 			this.contentLayout.append(this.userStatusLabel);
 		}
